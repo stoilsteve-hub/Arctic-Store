@@ -27,7 +27,9 @@ async function getProduct() {
             image: product.image
         };
         localStorage.setItem('selectedProduct', JSON.stringify(productData));
-        console.log("Saved to localStorage");
+        
+        // Redirect to Lukas' order page
+        window.location.href = 'js/Order popup/orderTest.html';
     });
 }
 
