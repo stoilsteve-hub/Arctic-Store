@@ -6,6 +6,9 @@ const productId = urlParams.get('id');
 async function getProduct() {
     const res = await fetch('https://fakestoreapi.com/products/' + productId);
     const product = await res.json();
+
+    // dynamically update browser tab
+    document.title = `${product.title} - Arctic Store`;
     
     // inject html
     document.getElementById('single-product-container').innerHTML = `
