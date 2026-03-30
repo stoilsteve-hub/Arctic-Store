@@ -84,7 +84,9 @@ body>header h1 {
 
 /* Lukas popup (do not touch) */
 .popup {
-    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
@@ -93,7 +95,9 @@ body>header h1 {
     align-items: center;
     opacity: 0;
     pointer-events: none;
+    z-index: 1000;
 }
+
 
 .popup .popupContent {
     width: 500px;
@@ -122,6 +126,9 @@ body>header h1 {
     cursor: pointer;
     margin-top: 15px;
     transition: background-color 0.2s ease;
+}
+.popup button:hover{
+     background-color: #1e70d1;
 }
 
 .popup.active {
