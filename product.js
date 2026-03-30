@@ -6,6 +6,7 @@ const productId = urlParams.get('id');
 async function getProduct() {
     const res = await fetch('https://fakestoreapi.com/products/' + productId);
     const product = await res.json();
+    console.log(product);
 
     // dynamically update browser tab
     document.title = `${product.title} - Arctic Store`;
@@ -38,7 +39,11 @@ async function getProduct() {
         localStorage.setItem('selectedProduct', JSON.stringify(productData));
         
         // redirect to order page
-        window.location.href = 'js/Order popup/orderTest.html';
+        
+    
+        //window.location.href = 'js/Order popup/orderTest.html';
+        showOrderPopup();
+
     });
 }
 
