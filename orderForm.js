@@ -1,11 +1,11 @@
 const form = document.getElementById('orderForm');
 const successMessage = document.getElementById('successMessage');
 const formError = document.getElementById('formError');
-const popupbtn = document.querySelector('.popupbtn');
 const closebtn = document.querySelector('.closeButton');
 const successCloseButton = document.getElementById('successCloseButton');
 
-popupbtn.onclick = () => {
+// Globally accessible function for product page to open checkout
+function showOrderPopup() {
     document.querySelector('.popup').classList.add('active');
     form.classList.remove('hidden');
     form.classList.remove('fade');
