@@ -3,6 +3,9 @@
 Frontend – Projektarbete – (G-Nivå)
 
 ## Kravspecifikation
+> **Viktig Notering angående Fake Store API:** 
+> Under utvecklingen kraschade den officiella Fake Store-servern (Returnerade Error 523: Origin Unreachable). För att säkerställa att skolprojektet fortsatte att fungera felfritt och att kravet på API-hämtning uppfylldes, implementerade vi proaktivt en egen backup-API-databas via GitHub. Alla anrop går nu säkert via `https://raw.githubusercontent.com/...` istället.
+
 1. En webbutik som visar alla produkter från Fake Store API (https://fakestoreapi.com/)
 2. Valfri Responsiv CSS-Layout.
 3. Ett beställningsformulär för att beställa en produkt (Namn, telefon, e-post, leveransadress).
