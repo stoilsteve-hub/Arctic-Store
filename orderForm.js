@@ -36,7 +36,7 @@ const inputFields = {
     },
     phone: {
         element: document.getElementById('phone'),
-        regex: /^[0-9]{1,20}$/,
+        regex: /^[0-9()-]{1,20}$/,
         message: "Enter a phone number",
     },
     address: {
