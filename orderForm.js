@@ -1,8 +1,7 @@
 const form = document.getElementById('orderForm');
 const successMessage = document.getElementById('successMessage');
 const formError = document.getElementById('formError');
-const closebtn = document.querySelector('.closeButton');
-const successCloseButton = document.getElementById('successCloseButton');
+const closebtn = document.getElementById('closeButton');
 
 // Globally accessible function for product page to open checkout
 function showOrderPopup() {
@@ -23,7 +22,6 @@ function closePopup() {
 }
 
 closebtn.onclick = closePopup;
-successCloseButton.onclick = closePopup;
 
 const inputFields = {
     name: {
