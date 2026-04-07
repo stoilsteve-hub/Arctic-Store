@@ -4,13 +4,14 @@ const productId = urlParams.get('id');
 
 // fetch specific product
 async function getProduct() {
-    const res = await fetch('https://fakestoreapi.com/products/' + productId);
-    const product = await res.json();
+    const res = await fetch('fakestore.json');
+    const allProducts = await res.json();
+    const product = allProducts.find(p => p.id == productId);
     console.log(product);
 
     // dynamically update browser tab
     document.title = `${product.title} - Arctic Store`;
-    
+
     // inject html
     document.getElementById('single-product-container').innerHTML = `
         <div class="product-card">
@@ -37,10 +38,10 @@ async function getProduct() {
             image: product.image
         };
         localStorage.setItem('selectedProduct', JSON.stringify(productData));
-        
+
         // redirect to order page
-        
-    
+
+
         //window.location.href = 'js/Order popup/orderTest.html';
         showOrderPopup();
 

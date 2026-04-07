@@ -1,24 +1,64 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const productGrid = document.getElementById("productGrid");
     const categoryBar = document.getElementById("allCategoryButtons");
+    const productGrid = document.getElementById("productGrid");
 
-    fetch("https://fakestoreapi.com/products/categories")
-        .then((res) => res.json())
-        .then((categories) => {
-            categories.forEach(cat => {
-                const catButton = document.createElement('button');
-                catButton.type = "button";
-                catButton.className = "btn m-1 catButton";
-                catButton.textContent = cat;
-                catButton.addEventListener('click', () => {
-                    showProducts(cat)
-                });
-                categoryBar.appendChild(catButton);
-            })
-            categoryBar.appendChild(getAllButton());
-        });
-
+    getCategories();
     showProducts('all');
+
+    // IF FAKESTOREAPI
+        function getCategories() {
+            fetch("https://fakestoreapi.com/products/categories")
+                .then((res) => res.json())
+                .then(categories => {
+                    categories.forEach(cat => {
+                        console.log("cat is: " + cat)
+                        const catButton = document.createElement('button');
+                        catButton.type = "button";
+                        catButton.className = "btn m-1 catButton";
+                        catButton.textContent = cat;
+                        catButton.addEventListener('click', () => {
+                            showProducts(cat)
+                        });
+                        categoryBar.appendChild(catButton);
+                    })
+                    categoryBar.appendChild(getAllButton());
+                })
+        } 
+
+    // IF FAKESTORE.JSON
+ /*    function getCategories() {
+        const categories = [];
+        fetch("../../fakestore.json")
+            .then((res) => res.json())
+            .then(products => {
+                products.forEach(product => {
+                    console.log("product.category: " + product.category)
+                    const exists = false;
+                    if (categories.length === 0) {
+                        categories.push(product.category)
+                    }
+                    else {
+                        categories.forEach(p => {
+                            if (p === product.category) {
+                                exists = true;
+                            }
+                        })
+                    }
+                    if (!exists) {
+                        const cat = product.category;
+                        const catButton = document.createElement('button');
+                        catButton.type = "button";
+                        catButton.className = "btn m-1 catButton";
+                        catButton.textContent = cat;
+                        catButton.addEventListener('click', () => {
+                            showProducts(cat)
+                        });
+                        categoryBar.appendChild(catButton);
+                    }
+                })
+            })
+        categoryBar.appendChild(getAllButton());
+    } */
 
     function getAllButton() {
         const catButton = document.createElement('button');
@@ -33,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function showProducts(category) {
         fetch("https://fakestoreapi.com/products")
+        //fetch("../../fakestore.json")
             .then((res) => res.json())
             .then((products) => {
                 const allProducts = getProductSubset(products, category);
@@ -40,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 productGrid.innerHTML = '';
                 allProducts.forEach(product => {
                     const card = `
-<div class="col">
+                <div class="col">
                     <a href="../../product.html?id=${product.id}" class="grid-card-link">
                         <div class="grid-card">
                             <div class="grid-card-header">
@@ -55,12 +96,11 @@ document.addEventListener("DOMContentLoaded", () => {
                             </div>
                         </div>
                     </a>
-  </div>
-      `;
+                </div>`;
                     productGrid.innerHTML += card;
                 });
             });
-    }
+        }
 
     function getProductSubset(allProducts, category) {
         if (category == 'all') {

@@ -87,7 +87,7 @@ body>header h1 {
     background-color: #1e70d1;
 }
 
-/* Lukas popup (do not touch) */
+/* Lukas' popup (do not touch) */
 .popup {
     position: fixed;
     top: 0;
@@ -128,6 +128,10 @@ body>header h1 {
     pointer-events: auto;
 }
 
+#successMessage {
+    text-align: center;
+}
+
 .popup button {
     display: block;
     width: 100%;
@@ -144,6 +148,10 @@ body>header h1 {
 }
 .popup button:hover{
      background-color: #1e70d1;
+}
+
+.inputBase {
+    border: 1px solid lightsteelblue;
 }
 
 .inputWrong {

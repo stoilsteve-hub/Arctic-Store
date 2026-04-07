@@ -1,11 +1,10 @@
 const form = document.getElementById('orderForm');
 const successMessage = document.getElementById('successMessage');
 const formError = document.getElementById('formError');
-const popupbtn = document.querySelector('.popupbtn');
-const closebtn = document.querySelector('.closeButton');
-const successCloseButton = document.getElementById('successCloseButton');
+const closebtn = document.getElementById('closeButton');
 
-popupbtn.onclick = () => {
+// Globally accessible function for product page to open checkout
+function showOrderPopup() {
     document.querySelector('.popup').classList.add('active');
     form.classList.remove('hidden');
     form.classList.remove('fade');
@@ -13,17 +12,25 @@ popupbtn.onclick = () => {
     successMessage.classList.remove('fade', 'in');
     formError.classList.add('hidden');
     form.reset();
+    Object.values(inputFields).forEach((field) => {
+        field.element.classList.remove("inputWrong", "inputCorrect");
+        field.element.classList.add("inputBase");
+        const errorElement = field.element.parentElement.querySelector('.errorMessage');
+        errorElement.textContent = "";
+    })
 }
 
 function closePopup() {
-    document.querySelector('.popup').classList.remove('active');
-    form.classList.add('hidden');
-    successMessage.classList.add('hidden');
-    formError.classList.add('hidden');
+    const popup = document.querySelector('.popup');
+    popup.classList.remove('active');
+    setTimeout(() => {
+        form.classList.add('hidden');
+        successMessage.classList.add('hidden');
+        formError.classList.add('hidden');
+    }, 400);
 }
 
 closebtn.onclick = closePopup;
-successCloseButton.onclick = closePopup;
 
 const inputFields = {
     name: {
@@ -38,7 +45,7 @@ const inputFields = {
     },
     phone: {
         element: document.getElementById('phone'),
-        regex: /^[0-9]{1,20}$/,
+        regex: /^[0-9()-]{1,20}$/,
         message: "Enter a phone number",
     },
     address: {
